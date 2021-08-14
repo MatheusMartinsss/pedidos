@@ -1,0 +1,25 @@
+.navbarContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    min-height: 50px;
+    background-color: #FFFAFA;
+    border: 2px solid #EEE9E9;
+
+}
+.navbarContainer ul{
+    font-weight: bolder;
+    list-style: none;
+}
+.navbarContainer li{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.navbarContainer li:hover{
+    border-bottom: 2px solid #000000;
+    opacity: 0.5;
+}
+

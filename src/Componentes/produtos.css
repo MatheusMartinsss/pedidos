@@ -1,0 +1,70 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    justify-content: center;
+
+}
+.Container h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.GridContainer{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    justify-content: baseline;
+
+}
+.GridCard{
+    background-color: #FFFFFF;
+    width: 450px;
+    height: 160px;
+    margin: 5px;
+    display: flex;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #EEE9E9;
+}
+.GridCard:hover{
+    border: 1px solid black;
+}
+.GridCard h1{
+
+}
+.CardImg{
+    width: 150px;
+    height: 150px;
+
+}
+.img{
+    width: 95%;
+    height: 100%;
+    border-radius: 10px;
+}   
+.itemInfo{
+    width: 340px;
+    text-align: center;
+    padding: 5px;
+    height:  100%;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+}
+.itemInfo h1{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0;
+  
+}
+.itemInfo h2{
+    opacity: 0.5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.itemInfo h3{
+
+}
