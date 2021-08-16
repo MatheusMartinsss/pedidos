@@ -22,6 +22,18 @@ const Categorias = [{
 }, {
   Nome: 'Pote de sorvete 1lt',
   Cod: 5
+},{
+  Nome: 'Pote de sorvete 1lt',
+  Cod: 6
+},{
+  Nome: 'Pote de sorvete 1lt',
+  Cod: 7
+},{
+  Nome: 'Pote de sorvete 1lt',
+  Cod: 8
+},{
+  Nome: 'Pote de sorvete 1lt',
+  Cod: 9
 }];
 
 const Prods = [{
@@ -94,7 +106,43 @@ const Prods = [{
   Descricao: 'Acai com chocoball e confeteaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   Categoria: 3,
   Preco: 10.00
-},]
+},
+{
+  Nome: 'Açai no Copo 290ml',
+  Descricao: 'Acai com chocoball e confete',
+  Categoria: 4,
+  Preco: 10.00
+}, {
+  Nome: 'Açai no Copo 290ml',
+  Descricao: 'Acai com chocoball e confete',
+  Categoria: 4,
+  Preco: 10.00
+}, {
+  Nome: 'Açai no Copo 300ml',
+  Descricao: 'Acai com chocoball e confete',
+  Categoria: 4,
+  Preco: 15.00
+}, {
+  Nome: 'Açai no pote 500ML',
+  Descricao: 'Acai com chocoball e confete',
+  Categoria: 4,
+  Preco: 20.00
+}, {
+  Nome: 'Açai no pote 500ML',
+  Descricao: 'Acai com Confete',
+  Categoria: 5,
+  Preco: 20.00
+}, {
+  Nome: 'Barca de Acaiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  Descricao: 'Acai com chocoball e confete',
+  Categoria: 5,
+  Preco: 10.00
+}, {
+  Nome: 'Açai no Copo 290ml',
+  Descricao: 'Acai com chocoball e confeteaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  Categoria: 5,
+  Preco: 10.00
+}]
 
 function App() {
   const [scrollTrue, setScroll] = useState(false)
