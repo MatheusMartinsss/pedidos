@@ -12,7 +12,7 @@ function NavBar(props) {
         <div className = {Position ? 'navbarContainer navbarContainerScroll':'navbarContainer'}>
             {Categorias.map(item =>(
                <ul>
-                   <li onClick = {() => onHandleClick()}>{item.Nome}</li>
+                   <li  onClick = {() => window.location.replace(`#${item.Cod}`)}>{item.Nome}</li>
                </ul>
             ))}
   

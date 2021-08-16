@@ -6,12 +6,19 @@
     min-height: 50px;
     background-color: #FFFAFA;
     border: 2px solid #EEE9E9;
+    overflow: hidden;
 }
 .navbarContainerScroll{
     position: fixed;
     top: 0;
+    width: 100%;
   
 }
+@media screen and (max-width: 600px) {
+    .navbarContainer{
+       justify-content: flex-start;
+    }
+ }
 .navbarContainer ul{
     font-weight: bolder;
     list-style: none;

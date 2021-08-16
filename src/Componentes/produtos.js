@@ -28,7 +28,7 @@ function Produtos(props) {
     return (
         <div className='Container'>
             {Categorias.map((i) => (
-                <div >
+                <div id = {i.Cod}>
                     <h1>{i.Nome}</h1>
                     <div className='GridContainer'>
                         {Prods.filter(item => item.Categoria === i.Cod).map(item => (
