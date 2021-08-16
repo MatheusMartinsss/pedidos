@@ -4,11 +4,12 @@ import './navbar.css'
 
 function NavBar(props) {
     const Categorias = props.Categorias;
+    const Position = props.position;
     function onHandleClick(){
         
     }
     return (
-        <div className = 'navbarContainer'>
+        <div className = {Position ? 'navbarContainer navbarContainerScroll':'navbarContainer'}>
             {Categorias.map(item =>(
                <ul>
                    <li onClick = {() => onHandleClick()}>{item.Nome}</li>

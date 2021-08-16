@@ -8,6 +8,7 @@
 }
 .Container h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 5px;
 }
 .GridContainer{
     display: flex;

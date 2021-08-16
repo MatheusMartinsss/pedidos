@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import Header from './Componentes/header'
 import Produtos from './Componentes/produtos'
 import Navbar from './Componentes/navbar'
@@ -96,10 +97,20 @@ const Prods = [{
 },]
 
 function App() {
+  const [scrollTrue, setScroll] = useState(false)
+  useEffect(
+    function Scroll() {
+      if(window.scrollY > 10){
+        setScroll(true)
+      }else{
+        setScroll(false)
+      }
+      window.addEventListener('scroll', Scroll)
+    }, [])
   return (
     <div className="App">
       <Header />
-      <Navbar Categorias={Categorias} />
+      <Navbar position = {scrollTrue} Categorias={Categorias} />
       <Produtos Categorias={Categorias} Prods={Prods} />
 
     </div>
