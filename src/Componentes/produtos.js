@@ -1,14 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { ButtonBase, Card, CardContent } from '@material-ui/core';
+import React, { useState } from 'react';
+import  Produto from './Produto'
 import './produtos.css'
 
 
@@ -20,20 +11,23 @@ function Produtos(props) {
     const [value, setValue] = React.useState(0);
     const Categorias = props.Categorias;
     const Prods = props.Prods;
+    const [modalOpen, setModal] = useState(false)
     const handleChange = (event, newValue) => {
         setValue(newValue);
         console.log(newValue)
     };
-
+    function handleClick() {
+        setModal(!modalOpen);
+    }
     return (
         <div className='Container'>
             {Categorias.map((i) => (
-                <div id = {i.Cod}>
+                <div id={i.Cod}>
                     <h1>{i.Nome}</h1>
-           
+
                     <div className='GridContainer'>
                         {Prods.filter(item => item.Categoria === i.Cod).map(item => (
-                            <div class='GridCard'>
+                            <div onClick={() => handleClick()} class='GridCard'>
                                 <div class='itemInfo'>
                                     <h1>{item.Nome}</h1>
                                     <h2>{item.Descricao}</h2>
@@ -49,7 +43,7 @@ function Produtos(props) {
                 </div>
 
             ))}
-
+            <Produto Open={modalOpen} handleClick = {handleClick} />
         </div>
 
     );

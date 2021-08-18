@@ -1,7 +1,7 @@
 .navbarContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: fit-content;
   min-height: 50px;
   background-color: #fffafa;
@@ -12,6 +12,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+
 }
 @media screen and (max-width: 600px) {
   .navbarContainer {
@@ -36,15 +37,13 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border: none;
   border-bottom: 2px solid black;
-
 }
 .navbarContainer li:hover {
-  border-bottom: 2px solid #000000;
   opacity: 0.5;
 }
 .backButton{
   border-radius: 2px;
-  margin-left: 5px;
+  margin: 10px;
   padding: 1px;
   border: none;
   background-color: #836FFF;
