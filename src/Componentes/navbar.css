@@ -21,7 +21,7 @@
 .navbarContainer ul {
   font-weight: bolder;
   list-style: none;
-  position: relative;
+
 }
 .liNormal {
   width: 150px;
@@ -48,11 +48,4 @@
   padding: 1px;
   border: none;
   background-color: #836FFF;
-}
-.navbarContainer img{
-  
-  width: 150px;
-  height: 100px;
-  border-radius: 10px;
-
 }
