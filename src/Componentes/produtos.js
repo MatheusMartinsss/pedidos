@@ -30,6 +30,7 @@ function Produtos(props) {
             {Categorias.map((i) => (
                 <div id = {i.Cod}>
                     <h1>{i.Nome}</h1>
+           
                     <div className='GridContainer'>
                         {Prods.filter(item => item.Categoria === i.Cod).map(item => (
                             <div class='GridCard'>
