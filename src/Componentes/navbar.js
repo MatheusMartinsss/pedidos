@@ -15,24 +15,21 @@ function NavBar(props) {
     const [currentCat, setCurrentCat] = useState(0);
     useEffect(function setSlide() {
         if (aWidth < 600) {
-            setMax(2) 
+            setMax(2)
         } else {
             setMax(5)
         }
-        
+
     }, [aWidth])
     function onHandleClick(props) {
         setCurrentCat(props) //Seta a categoria selecionada atualmente
         document.getElementById(props).scrollIntoView();
     }
-    function changeCategoria(){
-
-    }
     if (maxItens > 2) {
-        Categorias.slice((currentSlides - 1 ) * maxItens, currentSlides * maxItens).map((item) => {
+        Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
             View.push(
                 <ul>
-        
+
                     <li className={item.Cod === currentCat ? 'navbarContainer liSelect' : 'navbarContainer liNormal'} onClick={() => onHandleClick(item.Cod)}>
                         {item.Nome}
                     </li>
@@ -43,10 +40,10 @@ function NavBar(props) {
     }
     else {
 
-        Categorias.slice((currentSlides - 1 ) * maxItens, currentSlides * maxItens).map((item) => {
+        Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
             View.push(
                 <ul>
-        
+
                     <li className={item.Cod === currentCat ? 'navbarContainer liSelect' : 'navbarContainer liNormal'} onClick={() => onHandleClick(item.Cod)}>
                         {item.Nome}
                     </li>
@@ -56,19 +53,20 @@ function NavBar(props) {
         })
 
     }
+
     return (
         <div className={Position ? 'navbarContainer navbarContainerScroll' : 'navbarContainer'}>
-            {currentSlides > 1  &&
-                <button className='backButton' onClick={() => setCurrent(currentSlides-1)}>
-                    <ChevronLeftIcon></ChevronLeftIcon>
-                </button>
-            }    
-                {View}
-            {currentSlides < catLength/maxItens  &&
-                <button className='backButton' onClick={() => setCurrent(currentSlides+1)}>
-                    <ChevronRight></ChevronRight>
-                </button>
-            }    
+
+            <button className='backButton' onClick={() => {currentSlides > 1 && setCurrent(currentSlides - 1)}}>
+                <ChevronLeftIcon></ChevronLeftIcon>
+            </button>
+
+            {View}
+
+            <button className='backButton' onClick={() => {currentSlides < catLength / maxItens && setCurrent(currentSlides + 1)}}>
+                <ChevronRight></ChevronRight>
+            </button>
+
         </div>
     )
 }
