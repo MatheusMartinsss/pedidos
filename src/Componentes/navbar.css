@@ -17,6 +17,7 @@
 @media screen and (max-width: 600px) {
   .navbarContainer {
     justify-content: flex-start;
+    width: 100%;
   }
 }
 .navbarContainer ul {
@@ -43,7 +44,6 @@
 }
 .backButton{
   border-radius: 2px;
-  margin: 10px;
   padding: 1px;
   border: none;
   background-color: #836FFF;
