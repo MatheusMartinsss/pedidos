@@ -18,15 +18,13 @@
   .navbarContainer {
     justify-content: flex-start;
     width: 100%;
+    padding: 5px;
   }
-  .liNormal{
-    width: 80px;
-  }
+  
 }
 .navbarContainer ul {
   font-weight: bolder;
   list-style: none;
-
 }
 .liNormal {
   width: 150px;
