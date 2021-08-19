@@ -49,7 +49,6 @@
 }   
 .itemInfo{
     width: 340px;
-    text-align: center;
     padding: 5px;
     height:  100%;
     font-size: 10px;
@@ -57,17 +56,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     overflow: hidden;
 }
 .itemInfo h1{
-    font-size: 20px;
+    font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 0;
+    word-break: break-all;
   
 }
 .itemInfo h2{
     opacity: 0.5;
     font-family: Arial, Helvetica, sans-serif;
+    word-break: break-all;
+    overflow: hidden;
+    max-height: 70px;
 }
 
 .modal-style{
