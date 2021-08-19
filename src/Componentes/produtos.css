@@ -69,3 +69,8 @@
     opacity: 0.5;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.modal-style{
+    justify-content: center;
+    margin: 10px;
+}

@@ -11,13 +11,16 @@ function Produtos(props) {
     const [value, setValue] = React.useState(0);
     const Categorias = props.Categorias;
     const Prods = props.Prods;
+    const [produtoSelected, setProdSelected] = useState([])
     const [modalOpen, setModal] = useState(false)
     const handleChange = (event, newValue) => {
         setValue(newValue);
         console.log(newValue)
     };
-    function handleClick() {
+    function handleClick(props) {
+        setProdSelected(props)
         setModal(!modalOpen);
+        
     }
     return (
         <div className='Container'>
@@ -27,7 +30,7 @@ function Produtos(props) {
 
                     <div className='GridContainer'>
                         {Prods.filter(item => item.Categoria === i.Cod).map(item => (
-                            <div onClick={() => handleClick()} class='GridCard'>
+                            <div onClick={() => handleClick({... item})} class='GridCard'>
                                 <div class='itemInfo'>
                                     <h1>{item.Nome}</h1>
                                     <h2>{item.Descricao}</h2>
@@ -43,7 +46,8 @@ function Produtos(props) {
                 </div>
 
             ))}
-            <Produto Open={modalOpen} handleClick = {handleClick} />
+            {modalOpen && <Produto Produto = {produtoSelected}  Open={modalOpen} handleClick = {handleClick} />}
+            
         </div>
 
     );
