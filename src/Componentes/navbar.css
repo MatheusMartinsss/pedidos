@@ -19,6 +19,9 @@
     justify-content: flex-start;
     width: 100%;
   }
+  .liNormal{
+    width: 80px;
+  }
 }
 .navbarContainer ul {
   font-weight: bolder;
