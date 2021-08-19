@@ -1,5 +1,6 @@
 .navbarContainer {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   height: fit-content;
@@ -15,30 +16,29 @@
 
 }
 @media screen and (max-width: 600px) {
-  .navbarContainer {
-    justify-content: flex-start;
+  .navbarContainer{
     width: 100%;
-    padding: 5px;
+    align-content: center;
   }
-  
 }
-.navbarContainer ul {
-  font-weight: bolder;
-  list-style: none;
-}
-.liNormal {
-  width: 150px;
-  text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border: none;
 
+.categoriaLista {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-.liSelect {
-  width: 150px;
+.categoriaNormal{
+  margin: 10px;
+  max-width: 150px;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border: none;
-  border-bottom: 2px solid black;
+  font-weight: bold;
+}
+.categoriaSelecionada{
+  opacity: 0.5;
+  border-bottom: 1px groove #836FFF;
 }
 .navbarContainer li:hover {
   opacity: 0.5;

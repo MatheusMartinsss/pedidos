@@ -28,13 +28,13 @@ function NavBar(props) {
     if (maxItens > 2) {
         Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
             View.push(
-                <ul>
 
-                    <li className={item.Cod === currentCat ? 'navbarContainer liSelect' : 'navbarContainer liNormal'} onClick={() => onHandleClick(item.Cod)}>
-                        {item.Nome}
-                    </li>
-                </ul>
+                <a className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
+                    {item.Nome}
+                </a>
+
             )
+
 
         })
     }
@@ -42,12 +42,11 @@ function NavBar(props) {
 
         Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
             View.push(
-                <ul>
 
-                    <li className={item.Cod === currentCat ? 'navbarContainer liSelect' : 'navbarContainer liNormal'} onClick={() => onHandleClick(item.Cod)}>
-                        {item.Nome}
-                    </li>
-                </ul>
+                <a className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
+                    {item.Nome}
+                </a>
+
             )
 
         })
@@ -56,17 +55,17 @@ function NavBar(props) {
 
     return (
         <div className={Position ? 'navbarContainer navbarContainerScroll' : 'navbarContainer'}>
+            <div className='categoriaLista'>
+                <button className='backButton' onClick={() => { currentSlides > 1 && setCurrent(currentSlides - 1) }}>
+                    <ChevronLeftIcon></ChevronLeftIcon>
+                </button>
 
-            <button className='backButton' onClick={() => {currentSlides > 1 && setCurrent(currentSlides - 1)}}>
-                <ChevronLeftIcon></ChevronLeftIcon>
-            </button>
+                {View}
 
-            {View}
-
-            <button className='backButton' onClick={() => {currentSlides < catLength / maxItens && setCurrent(currentSlides + 1)}}>
-                <ChevronRight></ChevronRight>
-            </button>
-
+                <button className='backButton' onClick={() => { currentSlides < catLength / maxItens && setCurrent(currentSlides + 1) }}>
+                    <ChevronRight></ChevronRight>
+                </button>
+            </div>
         </div>
     )
 }
