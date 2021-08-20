@@ -36,7 +36,7 @@ function Produtos(props) {
                                     <h3>{item.Preco}</h3>
                                 </div>
                                 <div class='CardImg'>
-                                    <img class='img' src={'https://github.com/MatheusMartinsss/pedidos/blob/master/src/Componentes/humm-sorvetes-acai-no-copo.jpg'}></img>
+                                    <img class='img' src={'https://github.com/MatheusMartinsss/pedidos/blob/master/src/Componentes/humm-sorvetes-acai-no-copo.jpg?raw=true'}></img>
                                 </div>
                             </div>
 
