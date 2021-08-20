@@ -3,12 +3,14 @@
   justify-content: center;
   justify-items: center;
   height: 100%;
-  flex-grow: 5px;
 }
 .modal-container {
   background-color: white;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: auto;
   padding: 10px;
 
@@ -29,12 +31,13 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  border-bottom: 1px groove snow;
 }
 .product-options a {
+  width: 100%;
   margin: 10px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px groove;
 }
 
 .modal-container textarea{

@@ -28,25 +28,19 @@ function NavBar(props) {
     if (maxItens > 2) {
         Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
             View.push(
-
                 <a className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
                     {item.Nome}
                 </a>
-
             )
-
-
         })
     }
     else {
 
         Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
             View.push(
-
                 <a className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
                     {item.Nome}
                 </a>
-
             )
 
         })

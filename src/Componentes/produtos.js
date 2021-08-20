@@ -5,7 +5,6 @@ import './produtos.css'
 
 
 
-
 function Produtos(props) {
 
     const [value, setValue] = React.useState(0);
@@ -37,7 +36,7 @@ function Produtos(props) {
                                     <h3>{item.Preco}</h3>
                                 </div>
                                 <div class='CardImg'>
-                                    <img class='img' src={'http://www.hummsorvetes.com.br/wp-content/uploads/2016/09/humm-sorvetes-acai-no-copo.jpg'}></img>
+                                    <img class='img' src={'https://github.com/MatheusMartinsss/pedidos/blob/master/src/Componentes/humm-sorvetes-acai-no-copo.jpg'}></img>
                                 </div>
                             </div>
 
