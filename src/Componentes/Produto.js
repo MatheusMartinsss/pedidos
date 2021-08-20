@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from '@material-ui/core'
-
+import InputNumber from './InputNumber'
 import './produto.css'
 
 function Produto(props) {
@@ -26,16 +26,16 @@ function Produto(props) {
     }
     ]
     const Produto = [props.Produto];
+    const [qtdProd, setQtd] = useState(1)
     return <div className='produto-container'>
         <Modal
             open={props.Open}
             onClose={props.handleClick}
             onEscapeKeyDown={props.handleClick}
-
         >
             <div className='modal-container'>
                 {Produto.map((item) => (
-                    <div>
+                    <div className = 'product-modal-card'>
                         <h1>{item.Nome}</h1>
                         <span></span>
                         <h2>Escolha até duas opções</h2>
@@ -56,14 +56,23 @@ function Produto(props) {
                                     <text> {e.Nome}</text>
                                     <input type='checkbox'></input>
                                 </a>
-                                <span> R$2,00 </span>
+                                <a> R$2,00 </a>
                             </section>
                         ))}
                         <textarea placeholder='Deixe uma observação aqui..'></textarea>
+                        <section className = 'product-total'>
+                            <InputNumber 
+                                value = {qtdProd}
+                                minimalValue = {1}
+                                onInputChange = {(e) => setQtd(e)}
+                            ></InputNumber>
+                            <text>Total</text>
+                        </section>
                         <section className='product-buttons'>
                             <button onClick={() => props.handleClick} className='btn-cancel'>Cancelar</button>
                             <button className='btn-add'>Adicionar</button>
                         </section>
+                        
                     </div>
                 ))}
             </div>
