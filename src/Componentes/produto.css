@@ -15,9 +15,12 @@
     width: 90%;
     height: 100%;
   }
-  .product-modal-card{
+  .itens-section{
     overflow-y: scroll;
-    height: 50%;
+    overflow-x: hidden;
+    width: 100%;
+    height: auto;
+
   }
 }
 .product-modal-card{

@@ -19,9 +19,9 @@ function Produto({ Data, handleClick, Open }) {
     const [adicionaisChecked, setAdiocinaisChecked] = useState([])
     const [total, setTotal] = useState(0)
     const ValorItem = parseInt(Produto.map((i) => (i.Preco)))
-    const ValorAdicionas = ProdutoAdicionais.reduce((acc,item)=>{
-        return acc.concat(item.Itens.filter(a=>adicionaisChecked.includes(a.ID)))
-       },[]).reduce((a,v)=>a+v.Valor,0);
+    const ValorAdicionas = ProdutoAdicionais.reduce((acc, item) => {
+        return acc.concat(item.Itens.filter(a => adicionaisChecked.includes(a.ID)))
+    }, []).reduce((a, v) => a + v.Valor, 0);
     useEffect(() => {
         function somaTotal() {
             let a;
@@ -36,14 +36,14 @@ function Produto({ Data, handleClick, Open }) {
             const result = await getProdutoAdicionais(ID)
             setProdutoAdicionais(result)
         }
-        async function loadingOpcoes(){
+        async function loadingOpcoes() {
             const ID = parseInt(Produto.map((item) => (item.OpcoesGroup)))
             const result = await getProdutoOpcoes(ID)
             setProdutoOpcoes(result)
         }
         loadingAdicionais()
         loadingOpcoes()
-    },[])
+    }, [])
     const checkChange = (value) => {
         if (checked.indexOf(value) !== -1) {
             setChecked(checked.filter((checkBox) => checkBox !== value));
@@ -83,37 +83,38 @@ function Produto({ Data, handleClick, Open }) {
                 {Produto.map((item) => (
                     <div className='product-modal-card'>
                         <h1>{item.Nome}</h1>
-                        <span></span>
-                        <h2>Escolha até duas opções</h2>
-                        {ProdutoOpcoes.map((a) => ( a.Itens.map((p) =>(
-                            <section className='product-options'>
-                                <a>
-                                    <text> {p.Nome} </text>
-                                    <input type='checkbox'
-                                        value={p.ID}
-                                        onChange={() => checkChange(p.ID)}
-                                        checked={checked.includes(p.ID)}
-                                        disabled={!checked.includes(p.ID) && checked.length > maxOptions - 1}
-                                    >
-                                    </input>
-                                </a>
-                            </section>
-                        ))))}
-                        <h2>Adicionais</h2>
-                        {ProdutoAdicionais.map((e) => ( e.Itens.map((i) => (
-                            <section className='product-options'>
-                                <a>
-                                    <text> {i.Nome}</text>
-                                    <input type='checkbox'
-                                        value={i.ID}
-                                        onChange={() => checkChangeAdicionais(i.ID)}
-                                        checked={adicionaisChecked.includes(i.ID)}
-                                        disabled={!adicionaisChecked.includes(i.ID) && adicionaisChecked.length > maxAdicionais - 1}
-                                    ></input>
-                                </a>
-                                <a>{i.Valor}</a>
-                            </section>
-                        ))))}
+                        <section className = 'itens-section'>
+                            <h2>Escolha até duas opções</h2>
+                            {ProdutoOpcoes.map((a) => (a.Itens.map((p) => (
+                                <section className='product-options'>
+                                    <a>
+                                        <text> {p.Nome} </text>
+                                        <input type='checkbox'
+                                            value={p.ID}
+                                            onChange={() => checkChange(p.ID)}
+                                            checked={checked.includes(p.ID)}
+                                            disabled={!checked.includes(p.ID) && checked.length > maxOptions - 1}
+                                        >
+                                        </input>
+                                    </a>
+                                </section>
+                            ))))}
+                            <h2>Adicionais</h2>
+                            {ProdutoAdicionais.map((e) => (e.Itens.map((i) => (
+                                <section className='product-options'>
+                                    <a>
+                                        <text> {i.Nome}</text>
+                                        <input type='checkbox'
+                                            value={i.ID}
+                                            onChange={() => checkChangeAdicionais(i.ID)}
+                                            checked={adicionaisChecked.includes(i.ID)}
+                                            disabled={!adicionaisChecked.includes(i.ID) && adicionaisChecked.length > maxAdicionais - 1}
+                                        ></input>
+                                    </a>
+                                    <a>{i.Valor}</a>
+                                </section>
+                            ))))}
+                        </section>
                         <textarea placeholder='Deixe uma observação aqui..'></textarea>
                         <section className='product-options'>
                             <a>
