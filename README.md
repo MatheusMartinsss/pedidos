@@ -1,6 +1,9 @@
 # CARDAPIO VIRTUAL
 
-Esse projeto foi desenvolvido com intuito de testar conhecimentos.
+Cardapio virtual totalmente responsivo.
+
+![image](https://user-images.githubusercontent.com/78425051/131164035-44b57246-2ad8-471a-b509-b083843f7179.png)
+
 
 ## Available Scripts
 
