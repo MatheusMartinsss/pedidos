@@ -2,53 +2,48 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core'
 import InputNumber from './InputNumber'
 import './produto.css'
+import AdicionarCarrinho from '../Functions/adicionarCarrinho'
+import SomarTotal from '../Functions/somarProduto';
+import { ProdutosContext } from '../Services/Context/ProdutoContext';
 
-function Produto(props) {
-    const Opcoes = [{
-        Nome: 'Chocoball',
-        ID: 0,
-    }, {
-        Nome: 'Confete',
-        ID: 1,
-    }, {
-        Nome: 'Raspas de Chocolate',
-        ID: 2
-    }]
-    const Adicionais = [{
-        Nome: 'Morango',
-        Valor: 5.00,
-        ID: 0,
-    }, {
-        Nome: 'Raspas de Chocolate',
-        Valor: 5.00,
-        ID: 1,
-    }, {
-        Nome: 'Biz de Chocolate',
-        Valor: 5.00,
-        ID: 2,
-    }
-    ]
-    const Produto = [props.Produto];
+
+function Produto({ Data, handleClick, Open }) {
+    const { getProdutoAdicionais, getProdutoOpcoes } = React.useContext(ProdutosContext)
+    const [ProdutoAdicionais, setProdutoAdicionais] = useState([])
+    const [ProdutoOpcoes, setProdutoOpcoes] = useState([])
+    const Produto = [Data];
     const [qtdProd, setQtd] = useState(1)
     const maxOptions = 2;
     const maxAdicionais = 2;
     const [checked, setChecked] = useState([])
     const [adicionaisChecked, setAdiocinaisChecked] = useState([])
-    const [checkCount, setCheckedCount] = useState(0)
     const [total, setTotal] = useState(0)
+    const ValorItem = parseInt(Produto.map((i) => (i.Preco)))
+    const ValorAdicionas = ProdutoAdicionais.reduce((acc,item)=>{
+        return acc.concat(item.Itens.filter(a=>adicionaisChecked.includes(a.ID)))
+       },[]).reduce((a,v)=>a+v.Valor,0);
     useEffect(() => {
+        function somaTotal() {
+            let a;
+            a = SomarTotal(ValorItem, qtdProd, ValorAdicionas)
+            setTotal(a)
+        }
         somaTotal()
-    },[adicionaisChecked, qtdProd])
-
-    function somaTotal() {
-        let a;
-        const ValorItem = parseInt(Produto.map((i) => (i.Preco)))
-        console.log(ValorItem)
-        const ValorAdicionas = Adicionais.filter((item) => adicionaisChecked.includes(item.ID)).reduce((a, v) => a = a + v.Valor, 0)
-        console.log(ValorAdicionas)
-        a = (ValorItem + ValorAdicionas) * qtdProd;
-        setTotal(a)
-    }
+    }, [adicionaisChecked, qtdProd])
+    useEffect(() => {
+        async function loadingAdicionais() {
+            const ID = parseInt(Produto.map((item) => (item.AdicionaisGroup)))
+            const result = await getProdutoAdicionais(ID)
+            setProdutoAdicionais(result)
+        }
+        async function loadingOpcoes(){
+            const ID = parseInt(Produto.map((item) => (item.OpcoesGroup)))
+            const result = await getProdutoOpcoes(ID)
+            setProdutoOpcoes(result)
+        }
+        loadingAdicionais()
+        loadingOpcoes()
+    },[])
     const checkChange = (value) => {
         if (checked.indexOf(value) !== -1) {
             setChecked(checked.filter((checkBox) => checkBox !== value));
@@ -61,15 +56,28 @@ function Produto(props) {
             setAdiocinaisChecked(adicionaisChecked.filter((checkBox) => checkBox !== value));
         } else {
             setAdiocinaisChecked([...adicionaisChecked, value]);
-            
         }
         console.log(adicionaisChecked)
     };
+    function addToCart(props) {
+        if (checked.length > 0) {
+            const ProdutoCart = [{
+                idProduto: props,
+                idAdicionais: adicionaisChecked,
+                qtdProduto: qtdProd,
+                idOpcoes: checked
+            }]
+            AdicionarCarrinho(ProdutoCart)
+            handleClick()
+        } else {
+            console.log('nenhuma opção selecionada')
+        }
+    }
     return <div className='produto-container'>
         <Modal
-            open={props.Open}
-            onClose={props.handleClick}
-            onEscapeKeyDown={props.handleClick}
+            open={Open}
+            onClose={handleClick}
+            onEscapeKeyDown={handleClick}
         >
             <div className='modal-container'>
                 {Produto.map((item) => (
@@ -77,35 +85,35 @@ function Produto(props) {
                         <h1>{item.Nome}</h1>
                         <span></span>
                         <h2>Escolha até duas opções</h2>
-                        {Opcoes.map((a) => (
+                        {ProdutoOpcoes.map((a) => ( a.Itens.map((p) =>(
                             <section className='product-options'>
                                 <a>
-                                    <text> {a.Nome} </text>
+                                    <text> {p.Nome} </text>
                                     <input type='checkbox'
-                                        value={a.ID}
-                                        onChange={() => checkChange(a.ID)}
-                                        checked={checked.includes(a.ID)}
-                                        disabled={!checked.includes(a.ID) && checked.length > maxOptions - 1}
+                                        value={p.ID}
+                                        onChange={() => checkChange(p.ID)}
+                                        checked={checked.includes(p.ID)}
+                                        disabled={!checked.includes(p.ID) && checked.length > maxOptions - 1}
                                     >
                                     </input>
                                 </a>
                             </section>
-                        ))}
+                        ))))}
                         <h2>Adicionais</h2>
-                        {Adicionais.map((e) => (
+                        {ProdutoAdicionais.map((e) => ( e.Itens.map((i) => (
                             <section className='product-options'>
                                 <a>
-                                    <text> {e.Nome}</text>
+                                    <text> {i.Nome}</text>
                                     <input type='checkbox'
-                                        value={e.ID}
-                                        onChange={() => checkChangeAdicionais(e.ID)}
-                                        checked={adicionaisChecked.includes(e.ID)}
-                                        disabled={!adicionaisChecked.includes(e.ID) && adicionaisChecked.length > maxOptions - 1}
+                                        value={i.ID}
+                                        onChange={() => checkChangeAdicionais(i.ID)}
+                                        checked={adicionaisChecked.includes(i.ID)}
+                                        disabled={!adicionaisChecked.includes(i.ID) && adicionaisChecked.length > maxAdicionais - 1}
                                     ></input>
                                 </a>
-                                <a>{e.Valor}</a>
+                                <a>{i.Valor}</a>
                             </section>
-                        ))}
+                        ))))}
                         <textarea placeholder='Deixe uma observação aqui..'></textarea>
                         <section className='product-options'>
                             <a>
@@ -122,8 +130,8 @@ function Produto(props) {
                             </a>
                         </section>
                         <section className='product-buttons'>
-                            <button onClick={() => props.handleClick} className='btn-cancel'>Cancelar</button>
-                            <button className='btn-add'>Adicionar</button>
+                            <button onClick={() => handleClick} className='btn-cancel'>Cancelar</button>
+                            <button className='btn-add' onClick={() => addToCart(item.ID)}>Adicionar</button>
                         </section>
 
                     </div>

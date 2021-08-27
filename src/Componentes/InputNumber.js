@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { AddCircle, RemoveCircle, button, IndeterminateCheckBoxOutlined } from '@material-ui/icons'
+import React from 'react';
 
 import './inputnumber.css'
 function InputNumber({ defaultValue = 1, minimalValue, onClick, value, onInputChange }) {
