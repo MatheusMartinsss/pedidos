@@ -13,6 +13,8 @@
 @media screen and (max-width: 600px) {
   .modal-container {
     width: 90%;
+    height: 90%;
+    overflow-y: scroll;
   }
 }
 .product-modal-card{
