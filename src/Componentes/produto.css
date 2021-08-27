@@ -14,6 +14,8 @@
   .modal-container {
     width: 90%;
     height: 100%;
+  }
+  .product-options{
     overflow-y: scroll;
   }
 }
