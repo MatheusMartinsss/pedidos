@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# CARDAPIO VIRTUAL
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto foi desenvolvido com intuito de testar conhecimentos.
 
 ## Available Scripts
 
