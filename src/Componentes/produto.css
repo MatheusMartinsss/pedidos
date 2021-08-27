@@ -17,6 +17,7 @@
   }
   .product-options{
     overflow-y: scroll;
+    height: 50%;
   }
 }
 .product-modal-card{
