@@ -1,13 +1,21 @@
-import React, { useContext } from 'react';
-import CartContext from '../Services/Context/CartContext';
-
-// import { Container } from './styles';
-
+import React, { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../Services/Context/CartContext';
+import { ProdutosContext } from '../Services/Context/ProdutoContext';
+import './carrinho.css'
 function Carrinho() {
-  return (
-      <div>
+  const { ProdutosCart, getProdutos  } = React.useContext(CartContext)
 
-      </div>
+  const [Data, setData] = useState([])
+  useEffect(() => {
+      const i = getProdutos()
+      setData(i)
+  }, [ProdutosCart])
+  return (<>
+    {ProdutosCart.length > 0 && <div className='cart-container'>
+
+
+    </div>}
+  </>
   )
 }
 

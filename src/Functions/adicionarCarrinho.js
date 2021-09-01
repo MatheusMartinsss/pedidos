@@ -1,8 +1,9 @@
+import { CartContext } from "../Services/Context/CartContext"
+import React from 'react'
 
+const AddToCart = (props) =>{
 
-
-function AdicionarCarrinho(props) {
-  return console.log(props)
+   // addProdutoCart(...ProdutoCart)
+   return console.log(props)
 }
-
-export default AdicionarCarrinho;
+export default AddToCart;

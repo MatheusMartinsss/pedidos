@@ -14,9 +14,9 @@ function App() {
     <div className="App">
 
       <Header />
-      <Navbar  Categorias={Categorias} />
-      <Produtos Categorias={Categorias} Prods={ProdutosData} />
+      <Navbar Categorias={Categorias} />
       <CartProvider>
+        <Produtos Categorias={Categorias} Prods={ProdutosData} />
         <Carrinho />
       </CartProvider>
     </div>

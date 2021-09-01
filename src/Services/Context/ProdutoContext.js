@@ -225,7 +225,7 @@ const Adicionais = [{
   ID: 0,
   Nome: 'Adiocinais Açai',
   MaxOpcoes: 3,
-  Itens: [{
+  ItensA: [{
     Nome: 'Morango',
     Valor: 5.00,
     ID: 0,
@@ -246,18 +246,44 @@ const ProdutosProvider = ({ children }) => {
   const [AdicionaisData, setAdicionais] = useState(Adicionais)
   const [OpcoesData, setOpcoes] = useState(Opcoes)
 
-  
-  const getProdutoAdicionais  = (id) =>{
+
+  const getProdutoAdicionais = (id) => {
     console.log(id)
     const adicionais = AdicionaisData.filter((item) => item.ID === id)
     return adicionais;
   }
-  const getProdutoOpcoes = (id) =>{
+  const getProdutoAdicionaisChecked = ({groupID,  idx }) => {
+    console.log(groupID)
+    const result = AdicionaisData.filter((item) => item.ID === groupID )
+    const a = result.map((item) => item.ItensA.filter((e) => idx.includes(e.ID)))
+    return a;
+  }
+  const getProdutoOpcoesChecked = ({groupID,  idx }) => {
+    const result = OpcoesData.filter((item) => item.ID === groupID )
+    const a = result.map((item) => item.Itens.filter((e) => idx.includes(e.ID)))
+    return  a;
+  }
+  const getProdutoOpcoes = (id) => {
     const opcoes = OpcoesData.filter((item) => item.ID === id)
     return opcoes;
   }
+  const getProduto = (id) => {
+    console.log(id)
+    const result = ProdutosData.filter((item) => item.ID === id)
+    return result;
+  }
   return (
-    <ProdutosContext.Provider value={{ ProdutosData, Categorias, AdicionaisData, OpcoesData, getProdutoAdicionais, getProdutoOpcoes}}>
+    <ProdutosContext.Provider value={{
+      ProdutosData,
+      Categorias,
+      AdicionaisData,
+      OpcoesData,
+      getProdutoOpcoesChecked,
+      getProdutoAdicionaisChecked,
+      getProduto,
+      getProdutoAdicionais,
+      getProdutoOpcoes
+    }}>
       {children}
     </ProdutosContext.Provider>
   )

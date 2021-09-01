@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core'
 import InputNumber from './InputNumber'
 import './produto.css'
-import AdicionarCarrinho from '../Functions/adicionarCarrinho'
 import SomarTotal from '../Functions/somarProduto';
 import { ProdutosContext } from '../Services/Context/ProdutoContext';
+import { CartContext } from '../Services/Context/CartContext';
 
 
 function Produto({ Data, handleClick, Open }) {
     const { getProdutoAdicionais, getProdutoOpcoes } = React.useContext(ProdutosContext)
+    const {addProdutoCart} = React.useContext(CartContext)
     const [ProdutoAdicionais, setProdutoAdicionais] = useState([])
     const [ProdutoOpcoes, setProdutoOpcoes] = useState([])
     const Produto = [Data];
@@ -16,12 +17,13 @@ function Produto({ Data, handleClick, Open }) {
     const maxOptions = 2;
     const maxAdicionais = 2;
     const [checked, setChecked] = useState([])
-    const [adicionaisChecked, setAdiocinaisChecked] = useState([])
+    const [adicionaisChecked, setAdiocinaisChecked] = useState(null || [])
+    const [observacao, setObservacao] = useState('')
     const [total, setTotal] = useState(0)
     const ValorItem = parseInt(Produto.map((i) => (i.Preco)))
     const ValorAdicionas = ProdutoAdicionais.reduce((acc, item) => {
-        return acc.concat(item.Itens.filter(a => adicionaisChecked.includes(a.ID)))
-    }, []).reduce((a, v) => a + v.Valor, 0);
+        return acc.concat(item.ItensA.filter(a => adicionaisChecked.includes(a.ID)))
+    }, []).reduce((a, v) => a + v.Valor, 0); // Puxa todos os valores dos adicionais com checkbox ativo e soma.
     useEffect(() => {
         function somaTotal() {
             let a;
@@ -61,14 +63,16 @@ function Produto({ Data, handleClick, Open }) {
     };
     function addToCart(props) {
         if (checked.length > 0) {
-            const ProdutoCart = [{
-                idProduto: props,
-                idAdicionais: adicionaisChecked,
-                qtdProduto: qtdProd,
-                idOpcoes: checked
-            }]
-            AdicionarCarrinho(ProdutoCart)
             handleClick()
+            addProdutoCart({
+                idProduto: props.ID, 
+                adicionaisGroup: props.adicionaisGroup, 
+                opcoesGroup: props.opcoesGroup,  
+                idAdicionais: adicionaisChecked, 
+                idOpcoes: checked, 
+                qtd: qtdProd, 
+                obs: observacao
+            })
         } else {
             console.log('nenhuma opção selecionada')
         }
@@ -100,7 +104,7 @@ function Produto({ Data, handleClick, Open }) {
                                 </section>
                             ))))}
                             <h2>Adicionais</h2>
-                            {ProdutoAdicionais.map((e) => (e.Itens.map((i) => (
+                            {ProdutoAdicionais.map((e) => (e.ItensA.map((i) => (
                                 <section className='product-options'>
                                     <a>
                                         <text> {i.Nome}</text>
@@ -115,7 +119,7 @@ function Produto({ Data, handleClick, Open }) {
                                 </section>
                             ))))}
                         </section>
-                        <textarea placeholder='Deixe uma observação aqui..'></textarea>
+                        <textarea value = {observacao} onChange = {(e) => setObservacao(e.target.value)}  placeholder='Deixe uma observação aqui..'></textarea>
                         <section className='product-options'>
                             <a>
                                 <text>R${item.Preco}</text>
@@ -132,7 +136,7 @@ function Produto({ Data, handleClick, Open }) {
                         </section>
                         <section className='product-buttons'>
                             <button onClick={() => handleClick} className='btn-cancel'>Cancelar</button>
-                            <button className='btn-add' onClick={() => addToCart(item.ID)}>Adicionar</button>
+                            <button className='btn-add' onClick={() => addToCart({ID: item.ID, adicionaisGroup: item.AdicionaisGroup, opcoesGroup: item.OpcoesGroup})}>Adicionar</button>
                         </section>
 
                     </div>
