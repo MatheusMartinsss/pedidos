@@ -254,13 +254,15 @@ const ProdutosProvider = ({ children }) => {
   }
   const getProdutoAdicionaisChecked = ({groupID,  idx }) => {
     console.log(groupID)
+    console.log(Adicionais)
     const result = AdicionaisData.filter((item) => item.ID === groupID )
-    const a = result.map((item) => item.ItensA.filter((e) => idx.includes(e.ID)))
+    const [a] = result.map((item) => item.ItensA.filter((e) => idx.includes(e.ID)))
+  
     return a;
   }
   const getProdutoOpcoesChecked = ({groupID,  idx }) => {
     const result = OpcoesData.filter((item) => item.ID === groupID )
-    const a = result.map((item) => item.Itens.filter((e) => idx.includes(e.ID)))
+    const [a] = result.map((item) => item.Itens.filter((e) => idx.includes(e.ID)))
     return  a;
   }
   const getProdutoOpcoes = (id) => {
