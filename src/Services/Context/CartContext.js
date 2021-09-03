@@ -57,8 +57,12 @@ const CartProvider = ({ children }) => {
         console.log('total', Sum)
         return Sum;
     }
+    const getTotalItems = () =>{
+        const Sum = Produto.reduce((a, item) => a + item.Qtd,0)
+        return Sum;
+    }
     return (
-        <CartContext.Provider value={{ ProdutosCart, getProdutos, addProdutoCart, getTotalCart }}>
+        <CartContext.Provider value={{ ProdutosCart, getProdutos, addProdutoCart, getTotalCart, getTotalItems }}>
             {children}
         </CartContext.Provider>
     )

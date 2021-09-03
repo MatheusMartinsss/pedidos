@@ -12,7 +12,6 @@ function App() {
   const { ProdutosData, Categorias } = React.useContext(ProdutosContext)
   return (
     <div className="App">
-
       <Header />
       <Navbar Categorias={Categorias} />
       <CartProvider>

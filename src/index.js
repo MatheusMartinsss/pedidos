@@ -5,7 +5,7 @@ import ProdutosProvider from './Services/Context/ProdutoContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProdutosProvider>,
+    <ProdutosProvider>
       <App />
     </ProdutosProvider>
   </React.StrictMode>,
