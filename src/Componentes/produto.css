@@ -13,7 +13,7 @@
 @media screen and (max-width: 600px) {
   .modal-container {
     width: 90%;
-    height: 100vh;
+    height: 90%;
   }
   .itens-section{
     overflow-y: scroll;
