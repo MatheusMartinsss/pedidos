@@ -23,9 +23,9 @@ function Carrinho() {
     {ProdutosCart.length > 0 &&
       <div className='cart-container'>
         <div className='cart-container-content'>
-          <text>{TotalCart}</text>
-          <button>Fechar Pedido</button>
           <text>Itens {TotalItems}</text>
+          <button>Fechar Pedido</button>
+          <text>Total:R${TotalCart},00</text>
         </div>
       </div>}
   </>
