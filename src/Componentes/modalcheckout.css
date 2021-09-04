@@ -1,0 +1,64 @@
+.modal-checkout-container {
+  width: 800px;
+  height: 50%;
+  margin: auto;
+  background-color: white;
+}
+.modal-checkout-header{
+    height: 90px;
+    width: 100%;
+    background-color: brown;
+}
+.checkout-title{
+    display: flex;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    gap: 10px;
+}
+.circle-title{
+    display: block;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    padding: 7px;
+    align-content: center;
+    background: #fff;
+    border: 1px solid green;
+    color: green;
+    text-align: center;
+    font: 17px Arial, sans-serif;
+}
+
+.checkout-body{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 80%;
+    padding: 10px;
+}
+.checkout-form a {
+    display: flex;
+    justify-content: space-between;
+}
+.item-resume{
+    display: flex;
+    width: 85%;
+    margin: auto;
+    flex-direction: column;
+    gap: 2px;
+
+    border-bottom: 1px groove #bbb;
+    
+}
+.ckeckout-item-card h1{
+    word-break: break-all;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+}
+.item-resume a {
+    display: flex;
+    justify-content: space-between;
+}
+.divider {
+    border-top: 3px solid #bbb;
+}
+

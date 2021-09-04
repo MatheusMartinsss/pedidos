@@ -77,7 +77,7 @@ function Produto({ Data, handleClick, Open }) {
             console.log('nenhuma opção selecionada')
         }
     }
-    return <div className='produto-container'>
+    return (
         <Modal
             open={Open}
             onClose={handleClick}
@@ -143,7 +143,8 @@ function Produto({ Data, handleClick, Open }) {
                 ))}
             </div>
         </Modal>
-    </div>
+    )
+    
 }
 
 export default Produto;

@@ -26,7 +26,7 @@ function Produtos(props) {
                                 <div class='itemInfo'>
                                     <h1>{item.Nome}</h1>
                                     <h2>{item.Descricao}</h2>
-                                    <h3>{item.Preco}</h3>
+                                    <h3>R${item.Preco},00</h3>
                                 </div>
                                 <div class='CardImg'>
                                     <img class='img' alt = '' src={'https://github.com/MatheusMartinsss/pedidos/blob/master/src/Componentes/humm-sorvetes-acai-no-copo.jpg?raw=true'}></img>

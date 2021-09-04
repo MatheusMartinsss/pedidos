@@ -1,6 +1,6 @@
 .produto-container {
   display: flex;
-  height: 100%;
+  
 }
 .modal-container {
   background-color: white;
@@ -8,6 +8,7 @@
   margin: auto;
   height: fit-content;
   display: flex;
+  align-items: center;
   justify-content: flex-start;
 }
 @media screen and (max-width: 600px) {
