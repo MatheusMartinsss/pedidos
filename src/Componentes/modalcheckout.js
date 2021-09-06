@@ -3,79 +3,136 @@ import React, { useState } from 'react';
 import './modalcheckout.css'
 // import { Container } from './styles';
 
-function Checkout({ Open, onHandleClick, Produtos }) {
+function Checkout({ Open, onHandleClick, Produtos, Total }) {
     const [delivery, setDelivery] = useState(false)
-
+    const Etapas = [{
+        id: 1,
+        Nome: 'Confirmar'
+    }, {
+        id: 2,
+        Nome: 'Dados'
+    }, {
+        id: 3,
+        Nome: 'Pagamento'
+    }]
+    const [etapaAtual, setEtapa] = useState(1)
     console.log(delivery)
-    const DeliveryCheck = () =>{
+    const DeliveryCheck = () => {
         setDelivery(!delivery)
+        console.log(etapaAtual)
     }
+    const nextStep = () => {
+        if (etapaAtual == 1) {
+            setEtapa(2)
+        }
+    }
+    let Confirmar = (<div className='checkout-body-item-list'>
+        <h2>Oba... estamos quase lá para fechar seu pedido, primeiro preciso que você confirme se esses são os itens que você precisa..</h2>
+        <div className='checkout-item-list'>
+            {Produtos.map((item, key) => (
+                <div key={key} className='checkout-item-card'>
+                    <section style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <h1><span>{item.Qtd}x </span>
+                            {item.Nome}</h1>
+                        <h2>R${item.Preco},00</h2>
+                    </section>
+                    <section style={{ padding: '5px', display: 'flex', flexDirection: 'column' }}>
+                        {item.Opcoes.map((e) => (
+                            <text>{e.Nome}</text>
+                        ))}
+                        {item.Adicionais.map((i) => (
+                            <section style={{ justifyContent: "space-between", display: 'flex' }}>
+                                <text>{i.Nome}</text>
+                                <text>R${i.Valor},00</text>
+                            </section>
+                        ))}
+                    </section>
+                    <section style={{ display: 'flex', justifyContent: "space-between" }}>
+                        <text>Total</text>
+                        <text>R${item.Total},00</text>
+                    </section>
+                </div>
+            ))}
+        </div>
+        <section style={{ display: 'flex', justifyContent: "space-between", padding: '10px' }}>
+            <text>Total</text>
+            <text>R${Total},00</text>
+        </section>
+        <section style={{ display: 'flex', justifyContent: 'end' }}>
+            <button onClick={() => nextStep()}>Confirmar</button>
+        </section>
+    </div>)
+    let Dados = (<div className='checkout-dados-body'>
+        <h1>Quase la.. agora preciso que você confirme os seus dados...</h1>
+        <form className='checkout-dados-form'>
+            <div className = 'checkout-flex-form'>
+                <span> 
+                    <label htmlFor='nome'>Nome</label>
+                    <input style = {{width: '300px'}} id='nome' type='text' placeholder='Digite seu nome aqui'></input>
+                </span>
+                <span> 
+                    <label>Telefone</label>
+                    <input style = {{width: '200px'}} type='text' placeholder='Digite seu telefone aqui..'></input>
+                </span>
+            </div>
+            <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
+                <span>
+                    <input type='checkbox'></input>
+                    <text>Retirar</text>
+                </span>
+                <span>
+                    <input type='checkbox'></input>
+                    <text>Entrega</text>
+                </span>
+            </div>
+            <div className = 'checkout-flex-form'>
+                <span>
+                    <label>Endereço</label>
+                    <input style = {{width: '300px'}} type='text' placeholder='Digite seu endereço aqui...'></input>
+                </span>
+                <span>
+                    <label>Numero</label>
+                    <input type='number' placeholder='Numero'></input>
+                </span>
+            </div>
+            <div className = 'checkout-flex-form'>
+                <span>
+                    <label>Setor</label>
+                    <input type='text' placeholder='Digite o setor aqui'></input>
+                </span>
+                <span>
+                    <label>Complemento</label>
+                    <input type='text'></input>
+                </span>        
+            </div>
+        </form>
+    </div>)
+    let Pagamento = (<div>
+        <h1>Oba... estamos quase lá para fechar seu pedido, primeiro preciso que você confirme se esses são os itens que você precisa..</h1>
+    </div>)
     return (
-        <>
         <Modal
             open={Open}
             onClose={onHandleClick}
-            
         >
             <div className='modal-checkout-container'>
-                <div className='modal-checkout-header'>
+                <div className='navbar-checkout'>
+                    {Etapas.map((item) => (
+                        <text className={etapaAtual == item.id ? 'navbar-etapa navbar-etapa-select' : 'navbar-etapa'}>
+                            <span >{item.id}</span>
+                            {item.Nome}
+                        </text>
+                    ))}
                 </div>
-                <hr className='divider' />
+                <hr />
                 <div className='checkout-body'>
-                    <h1 className='checkout-title'><span className='circle-title'>1</span> Entrega</h1>
-                    <div className='item-resume'>
-                        <a>
-                            <label>Retirar no Local</label>
-                            <input onChange = {() => DeliveryCheck()} checked = {!delivery} type='checkbox'></input>
-                        </a>
-                        <a>
-                            <label>Entrega</label>
-                            <input onChange = {() => DeliveryCheck()} checked = {delivery} type='checkbox'></input>
-                        </a>
-                        {delivery && <form> 
-                            <h1> Dados para Entrega </h1>
-                            <a style = {{justifyContent: 'flex-start', gap: '10px'}}>
-                                <input style = {{width:'70%'}} type = 'text' placeholder = 'Endereço'></input>
-                                <input style = {{width: '75px'}} type = 'number' placeholder = 'Numero'></input>
-                            </a >  
-                            <a style = {{justifyContent: 'flex-start', gap: '10px'}}> 
-                                <input type = 'text' placeholder = 'Complemento'></input>
-                                <input type = 'text' placeholder = 'Bairro'></input>
-                             </a>     
-                        </form>}
-                    </div>
-                    <h1 className='checkout-title'><span className='circle-title'>2</span> Forma de Pagamento</h1>
-                    <h1 className='checkout-title'><span className='circle-title'>3</span> Resumo do Pedido</h1>
-                    <div className='checkout-pedido-resume'>
-                        {Produtos.map((item, index) => (
-                            <div className='item-resume'>
-                                <div className='ckeckout-item-card' key={index}>
-                                    <h1>{item.Nome}</h1>
-
-                                    <h1>Opções</h1>
-                                    {item.Opcoes.map((i) => (
-                                        <a>
-                                            <text>{i.Nome}</text>
-                                        </a>
-
-                                    ))}
-                                    <h1> Adicionais </h1>
-                                    {item.Adicionais && item.Adicionais.map((e) => (
-                                        <a>
-                                            <text>{e.Nome}</text>
-                                            <text>R${e.Valor},00</text>
-                                        </a>
-                                    ))}
-
-
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    {etapaAtual === 1 && Confirmar}
+                    {etapaAtual === 2 && Dados}
+                    {etapaAtual === 3 && Pagamento}
                 </div>
             </div>
         </Modal>
-        </>
+
     );
 }
 

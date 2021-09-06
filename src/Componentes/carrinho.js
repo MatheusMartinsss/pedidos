@@ -31,7 +31,7 @@ function Carrinho() {
           <text>Itens {TotalItems}</text>
           <button  onClick = {() => onHandleClick()}>Fechar Pedido</button> 
           <text>Total:R${TotalCart},00</text>
-          {modalCheckout  && <Checkout Open = {modalCheckout} onHandleClick = {onHandleClick} Produtos = {Data} />}
+          {modalCheckout  && <Checkout Open = {modalCheckout} onHandleClick = {onHandleClick} Produtos = {Data} Total = {TotalCart} />}
         </div>
       </div>}
   </>

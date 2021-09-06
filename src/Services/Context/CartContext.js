@@ -35,13 +35,16 @@ const CartProvider = ({ children }) => {
         const merged = ProdutosCart.map((item) => ({
             ...ProdutosData.find((o) => (o.ID === item.ID)), // Carrega todas informações do Produto qual o ID está salvo na produtos cart
             Adicionais: getProdutoAdicionaisChecked({ groupID: item.idAdicionaisGroup, idx: item.idAdicionais }), // pega todos Adicionais qual o ID esteja no ProdutosCart
+            TotalAdicionais: getProdutoAdicionaisChecked({ groupID: item.idAdicionaisGroup, idx: item.idAdicionais }).reduce((a, b) => a + b.Valor, 0),
             Opcoes: getProdutoOpcoesChecked({ groupID: item.idAdicionaisGroup, idx: item.idOpcoes }),// Pega todas Opções qual o ID esteja na ProdutosCart
             ...item
         }));
-        console.log(merged)
-        setProduto(merged)
-        return merged;
-
+        const formatedWithTotal = merged.map((item) => ({
+            Total: (item.TotalAdicionais + item.Preco) * item.Qtd,
+            ...item
+        }))
+        setProduto(formatedWithTotal)
+        return formatedWithTotal;
     }
 
     /*
