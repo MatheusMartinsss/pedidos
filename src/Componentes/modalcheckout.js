@@ -24,6 +24,8 @@ function Checkout({ Open, onHandleClick, Produtos, Total }) {
     const nextStep = () => {
         if (etapaAtual == 1) {
             setEtapa(2)
+        } else if (etapaAtual == 2) {
+            setEtapa(3)
         }
     }
     let Confirmar = (<div className='checkout-body-item-list'>
@@ -65,50 +67,77 @@ function Checkout({ Open, onHandleClick, Produtos, Total }) {
     let Dados = (<div className='checkout-dados-body'>
         <h1>Quase la.. agora preciso que você confirme os seus dados...</h1>
         <form className='checkout-dados-form'>
-            <div className = 'checkout-flex-form'>
-                <span> 
+
+            <div className='checkout-flex-form'>
+                <span>
                     <label htmlFor='nome'>Nome</label>
-                    <input style = {{width: '300px'}} id='nome' type='text' placeholder='Digite seu nome aqui'></input>
+                    <input style={{ width: '300px' }} id='nome' type='text' placeholder='Digite seu nome aqui'></input>
                 </span>
-                <span> 
+                <span>
                     <label>Telefone</label>
-                    <input style = {{width: '200px'}} type='text' placeholder='Digite seu telefone aqui..'></input>
+                    <input style={{ width: '200px' }} type='text' placeholder='Digite seu telefone aqui..'></input>
                 </span>
             </div>
             <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
                 <span>
-                    <input type='checkbox'></input>
+                    <input checked={delivery} onChange={() => DeliveryCheck()} type='checkbox'></input>
                     <text>Retirar</text>
                 </span>
                 <span>
-                    <input type='checkbox'></input>
+                    <input checked={!delivery} onChange={() => DeliveryCheck()} type='checkbox'></input>
                     <text>Entrega</text>
                 </span>
             </div>
-            <div className = 'checkout-flex-form'>
-                <span>
-                    <label>Endereço</label>
-                    <input style = {{width: '300px'}} type='text' placeholder='Digite seu endereço aqui...'></input>
-                </span>
-                <span>
-                    <label>Numero</label>
-                    <input type='number' placeholder='Numero'></input>
-                </span>
-            </div>
-            <div className = 'checkout-flex-form'>
-                <span>
-                    <label>Setor</label>
-                    <input type='text' placeholder='Digite o setor aqui'></input>
-                </span>
-                <span>
-                    <label>Complemento</label>
-                    <input type='text'></input>
-                </span>        
-            </div>
+            {delivery ? <div>
+                <text>
+                    O seu pedido estará pronto para ser retirado no nosso Endereço.
+                    Rua: fulano de tal, numero: 999, setor: fulano de tal
+                </text>
+            </div> :
+                <>
+                    <div className='checkout-flex-form'>
+                        <span>
+                            <label>Endereço</label>
+                            <input style={{ width: '300px' }} type='text' placeholder='Digite seu endereço aqui...'></input>
+                        </span>
+                        <span>
+                            <label>Numero</label>
+                            <input type='number' placeholder='Numero'></input>
+                        </span>
+                    </div>
+                    <div className='checkout-flex-form'>
+                        <span>
+                            <label>Setor</label>
+                            <input type='text' placeholder='Digite o setor aqui'></input>
+                        </span>
+                        <span>
+                            <label>Complemento</label>
+                            <input type='text'></input>
+                        </span>
+                    </div>
+
+                </>}
+            <section style={{ display: 'flex', justifyContent: 'end' }}>
+                <button onClick={() => nextStep()}>Confirmar</button>
+            </section>
         </form>
     </div>)
-    let Pagamento = (<div>
-        <h1>Oba... estamos quase lá para fechar seu pedido, primeiro preciso que você confirme se esses são os itens que você precisa..</h1>
+    let Pagamento = (<div  className='checkout-dados-form'>
+        <h1>Agora para finalizar nos diga qual vai ser a forma de pagamento!</h1>
+        <div className='checkout-flex-form'>
+            <span>
+                <input type='checkbox'></input>
+                <text>Dinheiro</text>
+            </span>
+            <span>
+                <input  type='checkbox' ></input>
+                <text>Cartão</text>
+            </span>
+            <span>
+                <input  type='checkbox' ></input>
+                <text>Pix</text>
+            </span>
+        </div>
     </div>)
     return (
         <Modal
