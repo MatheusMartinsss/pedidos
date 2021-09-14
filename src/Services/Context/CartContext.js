@@ -115,9 +115,9 @@ const CartProvider = ({ children }) => {
             Qtd: item.Qtd,
             Valor: item.Preco,
             txEntrega: taxValue
-        })).reduce((a, b) => a + (b.ValorAdicionais + b.Valor + taxValue) * b.Qtd, 0)
+        })).reduce((a, b) => a + (b.ValorAdicionais + b.Valor) * b.Qtd, 0)
         console.log('total', Sum)
-        return Sum;
+        return Sum + taxValue;
     }
     const getTotalItems = () => {
         const Sum = Produto.reduce((a, item) => a + item.Qtd, 0)
@@ -131,7 +131,6 @@ const CartProvider = ({ children }) => {
     const updateTaxValue = (value) => {
         console.log(value)
         setTaxValue(value)
-        getTotalCart();
     }
     return (
         <CartContext.Provider value={{ ProdutosCart, Entrega, getProdutos, addProdutoCart, getTotalCart, getTotalItems, getCity, updateTaxValue, getSubTotalCart, taxValue }}>

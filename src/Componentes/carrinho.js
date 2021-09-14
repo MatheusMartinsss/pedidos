@@ -19,13 +19,19 @@ function Carrinho() {
   useEffect(async () => {
 
     const resultTotal = await getTotalCart()
-    setTotalCart(resultTotal)
+    
 
     const resultTotalItems = await getTotalItems()
     setTotalItems(resultTotalItems)
 
     const resultSubTotal = await getSubTotalCart()
     setSubTotal(resultSubTotal)
+
+    if(taxValue > 0){
+      setTotalCart(resultTotal)
+    }else {
+      setTotalCart(SubTotal)
+    }
 
   }, [Data, taxValue])
   const onHandleClick = () =>{

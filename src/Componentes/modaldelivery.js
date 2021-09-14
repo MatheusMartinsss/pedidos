@@ -44,6 +44,7 @@ function DeliveryModal({ open, setModal}) {
     return (
         <Modal
             open={open}
+            onClose = {setModal}
         >
             <div className='delivery-modal-container'>
                 <div>

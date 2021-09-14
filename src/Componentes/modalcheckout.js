@@ -7,14 +7,21 @@ import DeliveryModal from './modaldelivery';
 
 function Checkout({ Open, onHandleClick, Produtos, Total, taxValue, SubTotal }) {
     const [delivery, setDelivery] = useState(false)
-    const [taxaDelivery, setTaxa] = useState(null)
+    const { updateTaxValue } = React.useContext(CartContext)
+    const [checkBoxMarked, setCheckboxMarked] = useState()
     const [openDelivery, setOpenDelivery] = useState(false)
-
-    const DeliveryCheck = () => {
-        setDelivery(!delivery)
-    }
     const setModal = () => {
         setOpenDelivery(!openDelivery)
+        setCheckboxMarked('entregar')
+    }
+    const checkBoxChecked = (value) => {
+        setCheckboxMarked(value)
+        if (value == 'retirar') {
+            updateTaxValue(0.00)
+        }
+        if(value == 'entregar'){
+            setModal()
+        }
     }
     return (
         <Modal
@@ -33,17 +40,17 @@ function Checkout({ Open, onHandleClick, Produtos, Total, taxValue, SubTotal }) 
                         <div style={{ padding: '10px' }}>
                             <section className='checkout-section-flex'>
                                 <h2>Retirar</h2>
-                                <input type='checkbox'></input>
+                                <input value='retirar' checked={checkBoxMarked == 'retirar'} onChange={(e) => checkBoxChecked(e.target.value)} type='checkbox'></input>
                             </section>
                             <section>
                                 <section className='checkout-section-flex'>
                                     <h2>Entregar</h2>
-                                    <input type='checkbox'></input>
+                                    <input value='entregar' checked={checkBoxMarked == 'entregar'} onChange={(e) => checkBoxChecked(e.target.value)} type='checkbox'></input>
                                 </section>
                                 {taxValue > 0 ?
                                     <label style={{ color: 'red' }}> Taxa de entrega R${taxValue},00</label>
                                     :
-                                    <label onClick = {() => setModal() } style={{ color: 'red' }}>Calcular taxa de Entrega</label>
+                                    <label onClick={() => setModal()} style={{ color: 'red' }}>Calcular taxa de Entrega</label>
                                 }
                             </section>
                         </div>
@@ -101,9 +108,9 @@ function Checkout({ Open, onHandleClick, Produtos, Total, taxValue, SubTotal }) 
                         </section>
                     </div>
                 </body>
-                {openDelivery &&  <DeliveryModal open = {openDelivery} setModal = {setModal} />}
+                {openDelivery && <DeliveryModal open={openDelivery} setModal={setModal} />}
             </div>
-          
+
         </Modal>
 
     );
