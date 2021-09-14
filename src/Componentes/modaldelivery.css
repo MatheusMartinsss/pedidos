@@ -1,0 +1,36 @@
+.delivery-modal-container{
+    background-color: aliceblue;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+.delivery-modal-container select  {
+    border: none;
+    width: 100px;
+    height: 2.2rem;
+    padding: 5px;
+    font-family: 'Arial', sans-serif;
+    border-radius: 6px;
+    border: 1px solid grey;
+}
+.delivery-modal-container input{
+    border: none;
+    height: 1.5rem;
+    padding: 5px;
+    font-family: 'Arial', sans-serif;
+    border-radius: 6px;
+    border: 1px solid grey;
+}
+.delivery-modal-container form{
+    justify-content: center;
+    align-content: center;
+}
+.delivery-flex-div{
+    display: flex;
+    gap: 10px;
+}
+.delivery-flex-items label{
+    display: block;
+}
