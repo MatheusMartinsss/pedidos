@@ -83,6 +83,7 @@ function Produto({ Data, handleClick, Open }) {
             open={Open}
             onClose={handleClick}
             onEscapeKeyDown={handleClick}
+      
         >
             <div className='modal-container'>
                 {Produto.map((item, idx) => (

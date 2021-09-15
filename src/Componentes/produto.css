@@ -1,7 +1,4 @@
-.produto-container {
-  display: flex;
-  
-}
+
 .modal-container {
   background-color: white;
   width: 500px;
@@ -15,14 +12,9 @@
   .modal-container {
     width: 90%;
     height: 100%;
+    overflow-X: auto;
   }
-  .itens-section{
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 100%;
-    height: auto;
 
-  }
 }
 .product-modal-card{
   width: 100%;
