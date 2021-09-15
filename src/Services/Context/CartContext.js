@@ -1,6 +1,7 @@
 import { useState } from "react"
 import React from 'react'
 import { ProdutosContext } from "./ProdutoContext"
+import { v4 as uuidv4 } from 'uuid';
 import SomarTotal from '../../Functions/somarProduto';
 export const CartContext = React.createContext(null)
 
@@ -65,6 +66,7 @@ const CartProvider = ({ children }) => {
     */
     const addProdutoCart = (props) => {
         const newData = {
+            IDCart: uuidv4(),
             ID: props.idProduto,
             idAdicionais: props.idAdicionais,
             idOpcoes: props.idOpcoes,
@@ -74,6 +76,15 @@ const CartProvider = ({ children }) => {
             obs: props.obs,
         }
         setProdutosCart([...ProdutosCart, newData])
+    }
+    const RemoveItem = (props) => {
+        console.log(props)
+        if (ProdutosCart?.length <= 1) {
+            setProdutosCart([]);
+        } else {
+            const result = ProdutosCart.filter((item) => item.IDCart != props);
+            setProdutosCart(result);
+        }
     }
     /* 
         GetProdutos: Carrega todos os Produtos, Opcoes e Adicionais salvo na ProdutosCart, com o valores atualizados, para evitar que
@@ -120,7 +131,7 @@ const CartProvider = ({ children }) => {
         return Sum + taxValue;
     }
     const getTotalItems = () => {
-        const Sum = Produto.reduce((a, item) => a + item.Qtd, 0)
+        const Sum = Produto?.reduce((a, item) => a + item.Qtd, 0)
         return Sum;
     }
     const getCity = ({ ID }) => {
@@ -133,7 +144,7 @@ const CartProvider = ({ children }) => {
         setTaxValue(value)
     }
     return (
-        <CartContext.Provider value={{ ProdutosCart, Entrega, getProdutos, addProdutoCart, getTotalCart, getTotalItems, getCity, updateTaxValue, getSubTotalCart, taxValue }}>
+        <CartContext.Provider value={{ ProdutosCart, Entrega, getProdutos, addProdutoCart, getTotalCart, getTotalItems, getCity, updateTaxValue, getSubTotalCart, RemoveItem, taxValue }}>
             {children}
         </CartContext.Provider>
     )

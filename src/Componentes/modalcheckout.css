@@ -1,20 +1,28 @@
 .modal-checkout-container{
     background-color: #FFFAFA;
-    width: 600px;
-    height: 600px;
+    min-width: 200px;
+    max-width: 600px;
     margin: auto;
     padding: 15px;
 }
 
 .modal-checkout-container header{
     background-color: #FFFAFA;
+    align-items: center;
+    display: flex;
+    gap: 5px;
     height: 20px;
     width: 100%;
     border-bottom: 1px solid rgb(199, 199, 199);
 }
-
 .checkout-body-container{
     padding: 10px;
+}
+.checkout-produtos-card{
+    background-color: white;
+    border-radius: 6px;
+    margin-top: 5px;
+    padding: 5px;
 }
 .checkout-body-header{
     padding: 5px;
@@ -28,6 +36,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .checkout-section-flex h1{
     font-family: 'Arial', sans-serif;
     font-size: 20px;

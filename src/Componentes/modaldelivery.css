@@ -1,11 +1,10 @@
 .delivery-modal-container{
-    background-color: aliceblue;
-    width: 500px;
-    height: 500px;
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    height: 250px;
     margin: auto;
     padding: 20px;
 }
-
 .delivery-modal-container select  {
     border: none;
     width: 100px;
@@ -33,4 +32,21 @@
 }
 .delivery-flex-items label{
     display: block;
+}
+.delivery-flex-items{
+    margin: 2px;
+}
+
+.delivery-modal-container input[type=submit]{
+    border: none;
+    display: block;
+    border-radius: 6px;
+    padding: 5px;
+    height: 2.5rem;
+    width: 150px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 15px;
+    font-family: 'Arial', sans-serif;
+    border: 1px groove #0c0c0c;
 }

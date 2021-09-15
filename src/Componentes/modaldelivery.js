@@ -1,23 +1,23 @@
 import { Modal } from '@material-ui/core';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CartContext } from '../Services/Context/CartContext';
 import './modaldelivery.css'
 import { useForm } from 'react-hook-form'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 // import { Container } from './styles';
 
-function DeliveryModal({ open, setModal}) {
-    const { Entrega, getCity, updateTaxValue  } = React.useContext(CartContext)
+function DeliveryModal({ open, setModal, setDeliveryAdress}) {
+    const { Entrega, getCity, updateTaxValue } = React.useContext(CartContext)
     const [City, setCity] = useState(null)
     const [taxa, setTaxa] = useState(0.00)
     const [BairroSelect, setBairro] = useState('')
     const {
         register,
-        errors,
         handleSubmit
     } = useForm();
     const onSubmit = (data) => {
-        alert(JSON.stringify(data));
         updateTaxValue(taxa)
+        setDeliveryAdress(data)
         setModal()
     };
     const onHandleChange = (target) => {
@@ -36,7 +36,7 @@ function DeliveryModal({ open, setModal}) {
     }
     const onHandleChangeBairro = (target) => {
         console.log(target)
-        const [select] = City.map((item) => (item.Bairros.filter((e) => e.id == target)))
+        const [select] = City.map((item) => (item.Bairros.filter((e) => e.Bairro == target)))
         setTaxa(parseInt(select.map((item) => item.Valor)))
         console.log(select)
         setBairro(target)
@@ -44,9 +44,11 @@ function DeliveryModal({ open, setModal}) {
     return (
         <Modal
             open={open}
-            onClose = {setModal}
+            onClose={setModal}
         >
             <div className='delivery-modal-container'>
+                <ArrowBackIcon fontSize='small' onClick={() => setModal()} />
+                <hr />
                 <div>
                     <div className='delivery-flex-items'>
                         <label>Cidade</label>
@@ -66,33 +68,36 @@ function DeliveryModal({ open, setModal}) {
                                 <div className='delivery-flex-div'>
                                     <div className='delivery-flex-items'>
                                         <label>Logradouro</label>
-                                        <input {...register('Logradouro', { required: true, maxLength: 80 })} type='text' placeholder='Digite o endereço aqui...'></input>
+                                        <input style={{ width: '250px' }} {...register('Logradouro', { required: true, maxLength: 80 })} type='text' placeholder='Digite o endereço aqui...'></input>
                                     </div>
                                     <div className='delivery-flex-items'>
                                         <label>Numero</label>
-                                        <input {...register('Numero', { required: true, maxLength: 6 })} type='number' placeholder='Digite seu numero..'></input>
+                                        <input style={{ width: '80px' }} {...register('Numero', { required: true, maxLength: 6 })} type='number' placeholder='N° Casa/Ap'></input>
                                     </div>
                                 </div>
                                 <div className='delivery-flex-div'>
                                     <div className='delivery-flex-items'>
 
                                         <label>Bairro</label>
-                                        <select name='Bairro' {...register('Bairro', { required: true })} value={BairroSelect}  onChange={(e) => onHandleChangeBairro(e.target.value)}>
+                                        <select name='Bairro' {...register('Bairro', { required: true })} value={BairroSelect} onChange={(e) => onHandleChangeBairro(e.target.value)}>
                                             <option defaultChecked={true} aria-disabled value=''></option>
                                             {item.Bairros.map((v) => {
-                                                return <option value={v.id} >{v.Bairro}</option>
+                                                return <option value={v.Bairro}>{v.Bairro}</option>
                                             })}
                                         </select>
                                     </div>
                                     <div className='delivery-flex-items'>
-                                        <label>Complemento</label>
+                                        <label >Complemento</label>
                                         <input {...register('Complemento', { required: false, maxLength: 25 })} type='text' placeholder='Complemento..'></input>
                                     </div>
                                 </div>
-                                <label>Taxa de entrega {taxa}</label>
+
                             </div>
                         ))}
-                        <input type='submit'></input>
+                        <div style={{ gap: '5px', display: 'flex', flexDirection:'column', alignItems:'center', justifyContent: 'center' }}>
+                            <label style = {{color:'red'}}>Taxa de entrega R${taxa},00</label>
+                            <input type='submit' value='Confirmar'></input>
+                        </div>
                     </form>
                 </div>
             </div>

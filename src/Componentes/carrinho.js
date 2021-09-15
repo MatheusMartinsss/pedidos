@@ -29,10 +29,13 @@ function Carrinho() {
 
   }, [Data, taxValue])
   const onHandleClick = () => {
+    if (modalCheckout) {
+      updateTaxValue(0.00)
+    }
     setModal(!modalCheckout)
   }
   return (<>
-    {ProdutosCart.length > 0 &&
+    {ProdutosCart?.length > 0 &&
       <div className='cart-container'>
         <div className='cart-container-content'>
           <text>Itens {TotalItems}</text>

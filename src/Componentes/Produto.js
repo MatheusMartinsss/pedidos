@@ -65,6 +65,7 @@ function Produto({ Data, handleClick, Open }) {
         if (checked.length > 0) {
             handleClick()
             addProdutoCart({
+                IDCart: props.IDCART,
                 idProduto: props.ID, 
                 adicionaisGroup: props.adicionaisGroup, 
                 opcoesGroup: props.opcoesGroup,  
@@ -84,8 +85,8 @@ function Produto({ Data, handleClick, Open }) {
             onEscapeKeyDown={handleClick}
         >
             <div className='modal-container'>
-                {Produto.map((item) => (
-                    <div className='product-modal-card'>
+                {Produto.map((item, idx) => (
+                    <div key = {idx} className='product-modal-card'>
                         <h1>{item.Nome}</h1>
                         <section className = 'itens-section'>
                             <h2>Escolha até duas opções</h2>
@@ -136,7 +137,7 @@ function Produto({ Data, handleClick, Open }) {
                         </section>
                         <section className='product-buttons'>
                             <button onClick={() => handleClick} className='btn-cancel'>Cancelar</button>
-                            <button className='btn-add' onClick={() => addToCart({ID: item.ID, adicionaisGroup: item.AdicionaisGroup, opcoesGroup: item.OpcoesGroup})}>Adicionar</button>
+                            <button className='btn-add' onClick={() => addToCart({ ID: item.ID, adicionaisGroup: item.AdicionaisGroup, opcoesGroup: item.OpcoesGroup})}>Adicionar</button>
                         </section>
 
                     </div>
