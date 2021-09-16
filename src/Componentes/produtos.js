@@ -18,9 +18,10 @@ function Produtos(props) {
         <div className='Container'>
             {Categorias.map((i, idx) => (
                 <div key={idx} id={i.Cod}>
-
-                    <h1>{i.Nome}</h1>
                     <div className='GridContainer'>
+                        <div style = {{display:"flex", justifyContent: 'center', width:"100%"}}>
+                            <h1>{i.Nome}</h1>
+                        </div>
                         {Prods.filter(item => item.Categoria == i.Cod).map((item, key) => (
                             <div key={key} onClick={() => handleClick({ ...item })} className='GridCard'>
                                 <div className='itemInfo'>

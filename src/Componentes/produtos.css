@@ -7,21 +7,22 @@
 
 }
 .Container h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
     margin: 5px;
 }
 .GridContainer{
     display: flex;
-    width: 90%;
+    max-width: 1100px;
     margin: auto;
     flex-wrap: wrap;
     margin-top: 5px;
-    justify-content: baseline;
+    justify-content: space-between;
 
 }
 .GridCard{
     background-color: #FFFFFF;
-    max-width: 700px;
+    max-width: 500px;
     min-width: 250px;
     max-height: 200px;
     margin: 5px;

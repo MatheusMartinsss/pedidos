@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../Services/Context/CartContext';
 import { ProdutosContext } from '../Services/Context/ProdutoContext';
 import Checkout from './modalcheckout';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import './carrinho.css'
 function Carrinho() {
   const { ProdutosCart, getProdutos, getTotalCart, getTotalItems, taxValue, getSubTotalCart, updateTaxValue } = React.useContext(CartContext)
@@ -38,7 +39,10 @@ function Carrinho() {
     {ProdutosCart?.length > 0 &&
       <div className='cart-container'>
         <div className='cart-container-content'>
-          <text>Itens {TotalItems}</text>
+          <section style = {{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+            <ShoppingCartOutlinedIcon />
+            <text>Itens {TotalItems}</text>
+           </section> 
           <button onClick={() => onHandleClick()}>Fechar Pedido</button>
           <text>Total:R${SubTotal},00</text>
           {modalCheckout && <Checkout Open={modalCheckout} onHandleClick={onHandleClick} Produtos={Data} Total={TotalCart} SubTotal={SubTotal} taxValue={taxValue} />}

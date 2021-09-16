@@ -1,4 +1,3 @@
-
 .modal-container {
   background-color: white;
   width: 500px;
@@ -14,7 +13,7 @@
     overflow-y: scroll;
   }
 }
-.product-modal-card{
+.product-modal-card {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -37,41 +36,41 @@
   align-items: center;
   font-family: sans-serif;
 }
-.modal-container textarea{
-    width: 100%;
-    max-height: 80px;
-    min-height: 30px;
-    border: 1px groove;
+.product-modal-card textarea {
+  width: 100%;
+  margin-top: 5px;
+  height: 50px;
+  border: 1px groove;
 }
-.product-buttons{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.product-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-.product-buttons button{
-    width: 100px;
-    height: 30px;
-    margin: 5px;
-    border: 1px groove;
-    border-radius: 5px;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.product-buttons button {
+  width: 100px;
+  height: 30px;
+  margin: 5px;
+  border: 1px groove;
+  border-radius: 5px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.product-buttons button:hover{
-    opacity: 0.5;
+.product-buttons button:hover {
+  opacity: 0.5;
 }
-.btn-cancel{
-    background-color: #FF3030;
+.btn-cancel {
+  background-color: #ff3030;
 }
-.btn-add{
-    background-color: #836FFF;
+.btn-add {
+  background-color: #836fff;
 }
 
-.product-total{
+.product-total {
   display: flex;
   justify-content: normal flex-end space-between;
   justify-items: center;
 }
-.product-total text{
+.product-total text {
   text-align: center;
 }

@@ -9,8 +9,16 @@
     height: 100px;
 }
 .cart-container-content{
-    width: 100%;
+    width: 90%;
     padding: 10px;
     display: flex;
+    color: white;
     justify-content: space-between;
+}
+.cart-container-content button{
+    border: none;
+    border-radius: 6px;
+    height: 1.5rem;
+    padding: 5px;
+    background-color: none;
 }

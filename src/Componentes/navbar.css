@@ -1,9 +1,9 @@
 .navbarContainer {
   display: flex;
-  width: 100%;
-  align-items: center;
+  max-width: 1100px;
+  margin: auto;
   justify-content: center;
-  height: fit-content;
+  max-height: 100px;
   min-height: 50px;
   background-color: #fffafa;
   border: 2px solid #eee9e9;
@@ -11,9 +11,9 @@
 }
 .navbarContainerScroll {
   position: fixed;
+  left: 0;
+  right: 0;
   top: 0;
-  width: 100%;
-
 }
 @media screen and (max-width: 600px) {
   .navbarContainer{
@@ -25,13 +25,15 @@
 .categoriaLista {
   width: 90%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 .categoriaNormal{
   margin: 10px;
   max-width: 150px;
+  display: block;
+  justify-content: center;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
@@ -47,5 +49,5 @@
   border-radius: 2px;
   padding: 1px;
   border: none;
-  background-color: #836FFF;
+
 }
