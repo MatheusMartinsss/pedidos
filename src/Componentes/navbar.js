@@ -34,18 +34,18 @@ function NavBar(props) {
         document.getElementById(props).scrollIntoView();
     }
     if (maxItens > 2) {
-        Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
+        Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item, key) => {
             View.push(
-                <a className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
+                <a key = {key} className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
                     {item.Nome}
                 </a>
             )
         })
     }
     else {
-        Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item) => {
+        Categorias.slice((currentSlides - 1) * maxItens, currentSlides * maxItens).map((item, key) => {
             View.push(
-                <a className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
+                <a key = {key} className={item.Cod === currentCat ? 'categoriaNormal categoriaSelecionada' : 'categoriaNormal'} onClick={() => onHandleClick(item.Cod)}>
                     {item.Nome}
                 </a>
             )
