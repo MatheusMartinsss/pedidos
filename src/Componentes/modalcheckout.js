@@ -156,7 +156,7 @@ function Checkout({ Open, onHandleClick, Produtos, Total, taxValue, SubTotal }) 
                             </div>
                         </section>
                     </div>
-                    <div style={{ justifyContent: 'center', display: 'flex', padding: '10px' }}>
+                    <div style={{ justifyContent: 'center', display: 'flex', padding: '10px', marginBottom:'10px' }}>
                         <input type = 'submit' value = 'Confirmar'/>
                     </div>
                 </body>

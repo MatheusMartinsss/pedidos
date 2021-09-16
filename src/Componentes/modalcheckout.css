@@ -1,11 +1,14 @@
 .modal-checkout-container{
     background-color: #FFFAFA;
     min-width: 200px;
+    max-height: 100%;
+    min-height: 200px;
     max-width: 600px;
-    min-height: 400px;
-    overflow-x: scroll;
     margin: auto;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 }
 
 .modal-checkout-container header{
@@ -47,7 +50,7 @@
     color: #696969;
 }
 .checkout-body-produtos{
-    height: 250px;
+    max-height: 200px;
     padding: 10px;
     overflow-y: auto;
     box-sizing: border-box;

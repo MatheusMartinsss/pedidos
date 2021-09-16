@@ -9,7 +9,7 @@ import { CartContext } from '../Services/Context/CartContext';
 
 function Produto({ Data, handleClick, Open }) {
     const { getProdutoAdicionais, getProdutoOpcoes } = React.useContext(ProdutosContext)
-    const {addProdutoCart} = React.useContext(CartContext)
+    const { addProdutoCart } = React.useContext(CartContext)
     const [ProdutoAdicionais, setProdutoAdicionais] = useState([])
     const [ProdutoOpcoes, setProdutoOpcoes] = useState([])
     const Produto = [Data];
@@ -66,12 +66,12 @@ function Produto({ Data, handleClick, Open }) {
             handleClick()
             addProdutoCart({
                 IDCart: props.IDCART,
-                idProduto: props.ID, 
-                adicionaisGroup: props.adicionaisGroup, 
-                opcoesGroup: props.opcoesGroup,  
-                idAdicionais: adicionaisChecked, 
-                idOpcoes: checked, 
-                qtd: qtdProd, 
+                idProduto: props.ID,
+                adicionaisGroup: props.adicionaisGroup,
+                opcoesGroup: props.opcoesGroup,
+                idAdicionais: adicionaisChecked,
+                idOpcoes: checked,
+                qtd: qtdProd,
                 obs: observacao
             })
         } else {
@@ -83,70 +83,72 @@ function Produto({ Data, handleClick, Open }) {
             open={Open}
             onClose={handleClick}
             onEscapeKeyDown={handleClick}
-      
+
         >
             <div className='modal-container'>
-                {Produto.map((item, idx) => (
-                    <div key = {idx} className='product-modal-card'>
-                        <h1>{item.Nome}</h1>
-                        <section className = 'itens-section'>
-                            <h2>Escolha até duas opções</h2>
-                            {ProdutoOpcoes.map((a) => (a.Itens.map((p) => (
-                                <section className='product-options'>
-                                    <a>
-                                        <text> {p.Nome} </text>
-                                        <input type='checkbox'
-                                            value={p.ID}
-                                            onChange={() => checkChange(p.ID)}
-                                            checked={checked.includes(p.ID)}
-                                            disabled={!checked.includes(p.ID) && checked.length > maxOptions - 1}
-                                        >
-                                        </input>
-                                    </a>
-                                </section>
-                            ))))}
-                            <h2>Adicionais</h2>
-                            {ProdutoAdicionais.map((e) => (e.ItensA.map((i) => (
-                                <section className='product-options'>
-                                    <a>
-                                        <text> {i.Nome}</text>
-                                        <input type='checkbox'
-                                            value={i.ID}
-                                            onChange={() => checkChangeAdicionais(i.ID)}
-                                            checked={adicionaisChecked.includes(i.ID)}
-                                            disabled={!adicionaisChecked.includes(i.ID) && adicionaisChecked.length > maxAdicionais - 1}
-                                        ></input>
-                                    </a>
-                                    <a>{i.Valor}</a>
-                                </section>
-                            ))))}
-                        </section>
-                        <textarea value = {observacao} onChange = {(e) => setObservacao(e.target.value)}  placeholder='Deixe uma observação aqui..'></textarea>
-                        <section className='product-options'>
-                            <a>
-                                <text>R${item.Preco}</text>
-                                <InputNumber
-                                    value={qtdProd}
-                                    minimalValue={1}
-                                    onInputChange={(e) => setQtd(e)}
-                                ></InputNumber>
-                            </a>
-                            <a>
-                                <text>Sub total</text>
-                                <text>R${total}</text>
-                            </a>
-                        </section>
-                        <section className='product-buttons'>
-                            <button onClick={() => handleClick} className='btn-cancel'>Cancelar</button>
-                            <button className='btn-add' onClick={() => addToCart({ ID: item.ID, adicionaisGroup: item.AdicionaisGroup, opcoesGroup: item.OpcoesGroup})}>Adicionar</button>
-                        </section>
+        
+                    {Produto.map((item, idx) => (
+                        <div key={idx} className='product-modal-card'>
+                            <h1>{item.Nome}</h1>
+                            <section className='itens-section'>
+                                <h2>Escolha até duas opções</h2>
+                                {ProdutoOpcoes.map((a) => (a.Itens.map((p) => (
+                                    <section className='product-options'>
+                                        <a>
+                                            <text> {p.Nome} </text>
+                                            <input type='checkbox'
+                                                value={p.ID}
+                                                onChange={() => checkChange(p.ID)}
+                                                checked={checked.includes(p.ID)}
+                                                disabled={!checked.includes(p.ID) && checked.length > maxOptions - 1}
+                                            >
+                                            </input>
+                                        </a>
+                                    </section>
+                                ))))}
+                                <h2>Adicionais</h2>
+                                {ProdutoAdicionais.map((e) => (e.ItensA.map((i) => (
+                                    <section className='product-options'>
+                                        <a>
+                                            <text> {i.Nome}</text>
+                                            <input type='checkbox'
+                                                value={i.ID}
+                                                onChange={() => checkChangeAdicionais(i.ID)}
+                                                checked={adicionaisChecked.includes(i.ID)}
+                                                disabled={!adicionaisChecked.includes(i.ID) && adicionaisChecked.length > maxAdicionais - 1}
+                                            ></input>
+                                        </a>
+                                        <a>{i.Valor}</a>
+                                    </section>
+                                ))))}
+                            </section>
+                            <textarea value={observacao} onChange={(e) => setObservacao(e.target.value)} placeholder='Deixe uma observação aqui..'></textarea>
+                            <section className='product-options'>
+                                <a>
+                                    <text>R${item.Preco}</text>
+                                    <InputNumber
+                                        value={qtdProd}
+                                        minimalValue={1}
+                                        onInputChange={(e) => setQtd(e)}
+                                    ></InputNumber>
+                                </a>
+                                <a>
+                                    <text>Sub total</text>
+                                    <text>R${total}</text>
+                                </a>
+                            </section>
+                            <section className='product-buttons'>
+                                <button onClick={() => handleClick} className='btn-cancel'>Cancelar</button>
+                                <button className='btn-add' onClick={() => addToCart({ ID: item.ID, adicionaisGroup: item.AdicionaisGroup, opcoesGroup: item.OpcoesGroup })}>Adicionar</button>
+                            </section>
 
-                    </div>
-                ))}
+                        </div>
+                    ))}
+        
             </div>
         </Modal>
     )
-    
+
 }
 
 export default Produto;

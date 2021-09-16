@@ -3,36 +3,30 @@
   background-color: white;
   width: 500px;
   margin: auto;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  padding: 20px;
 }
 @media screen and (max-width: 600px) {
   .modal-container {
-    width: 100%;
-    overflow-y: auto;
-    height: 400px;
+    width: 90%;
+    padding: 10px;
+    height: 100vh;
+    justify-content: center;
+    overflow-y: scroll;
   }
-
 }
 .product-modal-card{
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 .product-modal-card h1 {
   overflow: hidden;
   word-break: break-all;
   max-height: 80px;
-  margin-top: 0;
-  margin-bottom: 20px;
 }
 .product-options {
   display: flex;
   width: 100%;
-  margin: 5px;
   flex-direction: column;
   border-bottom: 1px groove snow;
 }
@@ -45,7 +39,8 @@
 }
 .modal-container textarea{
     width: 100%;
-    height: 80px;
+    max-height: 80px;
+    min-height: 30px;
     border: 1px groove;
 }
 .product-buttons{
