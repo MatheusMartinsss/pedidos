@@ -10,11 +10,8 @@
 }
 @media screen and (max-width: 600px) {
   .modal-container {
-    width: 90%;
-    height: 100%;
+    width: 100%;
     overflow-X: auto;
-    margin-bottom: 100px;
-    margin-top: 100px;
   }
 
 }

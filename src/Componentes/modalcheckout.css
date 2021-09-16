@@ -2,6 +2,8 @@
     background-color: #FFFAFA;
     min-width: 200px;
     max-width: 600px;
+    min-height: 400px;
+    overflow-x: scroll;
     margin: auto;
     padding: 15px;
 }
