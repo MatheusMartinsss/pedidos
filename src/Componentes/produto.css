@@ -11,7 +11,7 @@
 @media screen and (max-width: 600px) {
   .modal-container {
     width: 100%;
-    overflow-X: auto;
+    overflow-y: auto;
   }
 
 }
